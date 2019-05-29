@@ -5,16 +5,12 @@ by wmxl 05/05/2019
 #lg_pic_layout{
     background-color: white;
 }
-#bottom_layout{
-    background-color: white;
+#bottom_left_layout{
+    background-color:#ffffff;
 }
-#right_layout{
-    background-color: white;
+#bottom_right_layout{
+    background-color:#ffffff;
 }
-#top_layout{
-    background-color: white;
-}
-
 QPushButton{
     height: 35px;
     background-color:#62BE77;
@@ -41,12 +37,8 @@ QPushButton:hover {
     background-color:#333333;
 }
 #choose{
-    width: 60px;
-    font-size:18px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 150px;
 }
-
 #choose:hover{
     background-color:#333333;
 }
@@ -55,19 +47,17 @@ QPushButton:hover {
     border-style:outset;
     font-family: "Microsoft YaHei";
 }
-
-
-#text_label{
-    /*text-align: right;*/
+#model_name{
+    text-align: right;
     font-family: "Microsoft YaHei";
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #3c3d3d;
 }
 #model_info{
     text-align: right;
     font-family: "Microsoft YaHei";
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: #3c3d3d;
 }

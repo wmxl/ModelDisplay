@@ -23,7 +23,6 @@ class Example(QWidget):
         self.setFixedSize(1200, 800)
         # self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint) 隐藏TopBar
 
-        # 顶部 打开文件和地址栏
         self.button_open = QPushButton("打开FBX模型文件")
         self.button_open.setObjectName("open")
         self.path_edit = QLineEdit()
@@ -39,19 +38,13 @@ class Example(QWidget):
         self.h_box1.addWidget(self.button_exit)
 
         self.h_box2 = QHBoxLayout()
-        self.g_tree = QHBoxLayout()
+        self.g_tree = QGridLayout()
         self.h_box2.addLayout(self.g_tree)
 
         self.tree_widget = QTreeWidget(self)
         self.tree_widget.setObjectName("tree")
         self.tree_widget.header().setVisible(False)
         self.g_tree.addWidget(self.tree_widget, 0, 0, 1, 2)
-
-        self.tree_widget = QTreeWidget(self)
-        self.tree_widget.setObjectName("tree")
-        self.tree_widget.header().setVisible(False)
-        self.g_tree.addWidget(self.tree_widget)
-        self.g_tree.addStretch(1)
 
         self.v_box = QVBoxLayout()
 
@@ -69,14 +62,14 @@ class Example(QWidget):
 
         self.v_box.addWidget(self.g_lg_pic_widget)
         self.h_box2.addLayout(self.v_box)
-        # large picture part - end
 
+        # BOTTOM PART
         self.h_bottom_box = QHBoxLayout()
         self.v_box.addLayout(self.h_bottom_box)
 
-        # BOTTOM PART STRUCTURE - START
         self.v_bottom_box_left = QVBoxLayout()
-        self.v_bottom_box_left_widget = QWidget()
+        self.v_bottom_box_left_widget = QtWidgets.QWidget()
+        self.v_bottom_box_left_widget.setObjectName("bottom_left_layout")
         self.v_bottom_box_left_widget.setLayout(self.v_bottom_box_left)
 
         self.h_bottom_box_right = QHBoxLayout()
@@ -97,24 +90,49 @@ class Example(QWidget):
         self.model_info_value = QtWidgets.QLabel("")
         self.model_info_value.setObjectName("model_info_value")
 
-        self.g_model_name.addWidget(self.sub_model_name, 0, 0, 1, 1)
-        self.g_model_name.addWidget(self.sub_model_name_name, 0, 1, 1, 1)
+        self.h_bottom_box_left_modelname = QHBoxLayout()
+        self.h_bottom_box_left_modelname_widget = QWidget()
+        self.h_bottom_box_left_modelname_widget.setLayout(self.h_bottom_box_left_modelname)
+        self.v_bottom_box_left.addWidget(self.h_bottom_box_left_modelname_widget)
+        self.h_bottom_box_left_modelname.addWidget(self.model_name)
 
-        self.g_model_info.addWidget(self.sub_model_infos, 0, 0, 1, 1)
-        self.g_model_info.addWidget(self.sub_model_info_info, 0, 1, 1, 1)
+        self.h_bottom_box_left_modelname.addWidget(self.model_name_value)
+        self.h_bottom_box_left_modelname.addStretch(1)
 
+        self.h_bottom_box_left_splitter = QHBoxLayout()
+        self.v_bottom_box_left.addLayout(self.h_bottom_box_left_splitter)
+        self.h_bottom_box_left_splitter.addWidget(self.model_splitter)
+
+        self.h_bottom_box_left_modelinfo = QHBoxLayout()
+        self.v_bottom_box_left_modelinfo_l = QVBoxLayout()
+        self.h_bottom_box_left_modelinfo.addLayout(self.v_bottom_box_left_modelinfo_l)
+        self.v_bottom_box_left_modelinfo_l.addWidget(self.model_info)
+        self.v_bottom_box_left_modelinfo_l.addStretch(1)
+        self.v_bottom_box_left.addLayout(self.h_bottom_box_left_modelinfo)
+        self.h_bottom_box_left_modelinfo.addWidget(self.model_info_value)
+        self.h_bottom_box_left_modelinfo.addStretch(1)
+        self.v_bottom_box_left.addStretch(1)
 
         # CHOICE MATERIAL-TYPE MODEL
         self.lower_right_icon = QtWidgets.QToolButton()
         self.lower_right_icon.setIcon(QtGui.QIcon('./cat.jpg'))  # 设置按钮图标
         self.lower_right_icon.setIconSize(QtCore.QSize(180, 180))  # 设置图标大小
-        self.g_bottom_box_right.addWidget(self.lower_right_icon)
+        self.h_bottom_box_right.addWidget(self.lower_right_icon)
 
-        self.h_bottom_box.addWidget(self.g_bottom_box_right_widget)
-        self.lower_right_label = QtWidgets.QLabel("      材质类型 :")
-        self.lower_right_label.setObjectName("text_label")
-        self.lower_right_label_detail = QtWidgets.QLabel("bear")
-        self.lower_right_label_detail.setObjectName("text_label_detail")
+        self.h_bottom_box.addWidget(self.h_bottom_box_right_widget)
+        self.material_type = QtWidgets.QLabel(" 材质类型 :")
+        self.material_type.setObjectName("material_type")
+        self.material_type_value = QtWidgets.QLabel("")
+        self.material_type_value.setObjectName("material_type_value")
+
+        self.v_bottom_box_right = QVBoxLayout()
+        self.h_bottom_box_right.addLayout(self.v_bottom_box_right)
+
+        self.v_bottom_box_right.addStretch(2)
+        self.v_bottom_box_right.addWidget(self.material_type)
+        self.v_bottom_box_right.addWidget(self.material_type_value)
+
+        self.v_bottom_box_right.addStretch(11)
         self.button_choose = QtWidgets.QPushButton("选 择")
         self.button_choose.setObjectName("choose")
         self.v_bottom_box_right.addWidget(self.button_choose)
@@ -123,7 +141,6 @@ class Example(QWidget):
         # with open('./style_bottom.qss', 'r') as f:
         #     self.h_bottom_box_right_widget.setStyleSheet(f.read())
 
-        # 主要布局设置
         self.h_box1_widget = QtWidgets.QWidget()
         self.h_box1_widget.setLayout(self.h_box1)
         self.main_box = QVBoxLayout()
@@ -131,10 +148,7 @@ class Example(QWidget):
         self.main_box.addLayout(self.h_box2)
         self.setLayout(self.main_box)
 
-
-
         # CONNECT FUNCTION PART
-
         self.button_open.pressed.connect(self.open_file_names_dialog)
         self.button_choose.pressed.connect(self.select_material)
         self.tree_widget.itemClicked['QTreeWidgetItem*', 'int'].connect(self.tree_item_click)
@@ -166,8 +180,9 @@ class Example(QWidget):
 
             self.tree_widget = QTreeWidget(self)
             self.tree_widget.setObjectName("tree")
-            self.g_tree.addWidget(self.tree_widget, 0, 0, 20, 200)
+            self.g_tree.addWidget(self.tree_widget, 5, 0, 1, 3)
             self.tree_widget.header().setVisible(False)
+            self.g_tree.addWidget(self.tree_widget, 0, 0, 1, 2)
 
             self.tree_widget.itemClicked['QTreeWidgetItem*', 'int'].connect(self.tree_item_click)
             # 其中tree_item_click是自己定义的槽函数
@@ -218,6 +233,7 @@ class Example(QWidget):
                 self.tree_widget.expandItem(item)
                 self.root.setIcon(0, QtGui.QIcon("icons/open_folder.png"))
                 self.root.setText(0, " " + global_rh.name + "                   ▴")
+
         # 如果当前item是孩子节点
         else:
             # print(n)
